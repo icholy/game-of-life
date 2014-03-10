@@ -29,3 +29,5 @@ $(function () {
   
 });
 ```
+
+[John Conway explains his Game Of Life](http://www.youtube.com/watch?v=E8kUJL04ELA)
