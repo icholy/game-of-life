@@ -25,7 +25,6 @@ var acorn = [
   [true,  true,  false, false, true,  true,  true ]
 ];
 
-
 var rPentomino = [
   [false, true, true],
   [true,  true, false],
