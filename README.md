@@ -13,15 +13,15 @@ var glider = [
 
 $(function () {
   
-  var $canvas = $("#canvas"),
-      ctx  = $canvas[0].getContext('2d'),
-      size = 100,
-      game = new Game(size, ctx);
+  var $canvas = $('#canvas'),
+      ctx     = $canvas[0].getContext('2d'),
+      size    = 100,
+      game    = new Game(size, ctx);
   
   $canvas.on('click', function (e) {
     var offset = $(this).offset(),
-        x = Math.floor((e.clientX - offset.left) / 11),
-        y = Math.floor((e.clientY - offset.top) / 11);
+        x      = Math.floor((e.clientX - offset.left) / 11),
+        y      = Math.floor((e.clientY - offset.top) / 11);
     game.addShape(glider, x, y);
     game.draw();
   });
