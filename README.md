@@ -68,3 +68,4 @@ $(function () {
 ```
 
 [John Conway explains his Game Of Life](http://www.youtube.com/watch?v=E8kUJL04ELA)
+[Turing Machine](http://www.youtube.com/watch?v=My8AsV7bA94)
