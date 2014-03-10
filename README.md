@@ -13,14 +13,18 @@ var glider = [
 
 $(function () {
   
-  var ctx  = $("#canvas")[0].getContext('2d'),
+  var $canvas = $("#canvas"),
+      ctx  = $canvas[0].getContext('2d'),
       size = 100,
       game = new Game(size, ctx);
   
-  game.addShape(glider, 0, 0);
-  game.addShape(glider, 3, 3);
-  game.addShape(glider, 6, 5);
-  game.addShape(glider, 10, 10);
+  $canvas.on('click', function (e) {
+    var offset = $(this).offset(),
+        x = Math.floor((e.clientX - offset.left) / 11),
+        y = Math.floor((e.clientY - offset.top) / 11);
+    game.addShape(glider, x, y);
+    game.draw();
+  });
   
   setInterval(function () {
     game.next();  
