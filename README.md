@@ -1,7 +1,7 @@
 Game Of Life
 ============
 
-Example [pluker](http://embed.plnkr.co/Z4cxoqkmwfAGk95rtXQ8/previ):
+Example [pluker](http://embed.plnkr.co/Z4cxoqkmwfAGk95rtXQ8/preview):
 
 
 ``` js
