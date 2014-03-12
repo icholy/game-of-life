@@ -55,7 +55,7 @@ var Grid = function() {
 
         var neighboors = [
             this.getCell(left, top), this.getCell(x, top), this.getCell(right, top),
-            this.getCell(left, y), this.getCell(right, y),
+            this.getCell(left, y),                         this.getCell(right, y),
             this.getCell(left, btm), this.getCell(x, btm), this.getCell(right, btm)
         ];
 
