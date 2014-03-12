@@ -1,21 +1,21 @@
-var Cell = function() {
+var Cell = function () {
 
     var Cell = function Cell(alive) {
         this.setAlive(alive);
     };
 
-    Cell.prototype.isAlive = function() {
+    Cell.prototype.isAlive = function () {
         return this._alive;
     };
 
-    Cell.prototype.setAlive = function(alive) {
+    Cell.prototype.setAlive = function (alive) {
         this._alive = alive;
     };
 
     return Cell;
 }.call(null);
 
-var Grid = function() {
+var Grid = function () {
 
     var Grid = function Grid(size) {
         var i, j;
@@ -30,15 +30,15 @@ var Grid = function() {
         }
     };
 
-    Grid.prototype.forEach = function(fn) {
-        this._rows.forEach(function(row, y) {
-            row.forEach(function(cell, x) {
+    Grid.prototype.forEach = function (fn) {
+        this._rows.forEach(function (row, y) {
+            row.forEach(function (cell, x) {
                 fn(cell, x, y);
             });
         });
     };
 
-    Grid.prototype.getCell = function(x, y) {
+    Grid.prototype.getCell = function (x, y) {
         var row = this._rows[y];
         if (typeof row === 'undefined') {
             return undefined;
@@ -46,11 +46,11 @@ var Grid = function() {
         return row[x];
     };
 
-    Grid.prototype.nNeighboors = function(x, y) {
+    Grid.prototype.nNeighboors = function (x, y) {
 
-        var top = y - 1,
-            btm = y + 1,
-            left = x - 1,
+        var top   = y - 1,
+            btm   = y + 1,
+            left  = x - 1,
             right = x + 1;
 
         var neighboors = [
@@ -61,12 +61,12 @@ var Grid = function() {
 
         return neighboors.filter(function (cell) {
           return typeof cell !== 'undefined';
-        }).reduce(function(alive, cell) {
+        }).reduce(function (alive, cell) {
             return cell.isAlive() ? alive + 1 : alive;
         }, 0);
     };
 
-    Grid.prototype.size = function() {
+    Grid.prototype.size = function () {
         return this._size;
     };
 
@@ -74,18 +74,18 @@ var Grid = function() {
 
 }.call(null);
 
-var Game = function() {
+var Game = function () {
 
     var Game = function Game(size, ctx) {
         this._grid = new Grid(size);
         this._ctx = ctx;
     };
 
-    Game.prototype.next = function() {
+    Game.prototype.next = function () {
         var cGrid = this._grid,
             nGrid = new Grid(cGrid.size());
 
-        cGrid.forEach(function(cell, x, y) {
+        cGrid.forEach(function (cell, x, y) {
             var cCell = cGrid.getCell(x, y),
                 nCell = nGrid.getCell(x, y),
                 nNeighboors = cGrid.nNeighboors(x, y);
@@ -108,18 +108,18 @@ var Game = function() {
         this._grid = nGrid;
     };
 
-    Game.prototype.draw = function() {
+    Game.prototype.draw = function () {
         var ctx = this._ctx;
-        this._grid.forEach(function(cell, x, y) {
+        this._grid.forEach(function (cell, x, y) {
             ctx.fillStyle = cell.isAlive() ? '#FFF' : '#000';
             ctx.fillRect((x * 10) + x, (y * 10) + y, 10, 10);
         });
     };
 
-    Game.prototype.addShape = function(shape, x, y) {
+    Game.prototype.addShape = function (shape, x, y) {
         var grid = this._grid;
-        shape.forEach(function(row, yOffset) {
-            row.forEach(function(alive, xOffset) {
+        shape.forEach(function (row, yOffset) {
+            row.forEach(function (alive, xOffset) {
                 var cell = grid.getCell(x + xOffset, y + yOffset);
                 if (typeof cell !== 'undefined') {
                     cell.setAlive(alive);
