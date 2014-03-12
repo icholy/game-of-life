@@ -59,10 +59,11 @@ var Grid = function() {
             this.getCell(left, btm), this.getCell(x, btm), this.getCell(right, btm)
         ];
 
-        return neighboors.reduce(function(acc, cell) {
-            return (typeof cell !== 'undefined' && cell.isAlive()) ? acc + 1 : acc;
+        return neighboors.filter(function (cell) {
+          return typeof cell !== 'undefined';
+        }).reduce(function(alive, cell) {
+            return cell.isAlive() ? alive + 1 : alive;
         }, 0);
-
     };
 
     Grid.prototype.size = function() {
@@ -130,5 +131,6 @@ var Game = function() {
     return Game;
 
 }.call(null);
+
 
 
